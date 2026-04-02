@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICF(国際生活機能分類)を理解する - スタッフ教育資料</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #2D3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, #2C5F6F 0%, #4A90A4 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* セクション共通 */
+        section {
+            padding: 60px 40px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #2C5F6F;
+            border-left: 6px solid #4A90A4;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin: 40px 0 20px 0;
+            color: #2C5F6F;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        /* プロローグシーン */
+        .scene-box {
+            background: #F7FAFC;
+            border-left: 4px solid #FF6B6B;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .scene-box::before {
+            content: '\f0e5';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: #FF6B6B;
+            opacity: 0.3;
+        }
+
+        .scene-dialogue {
+            font-size: 1.1em;
+            font-style: italic;
+            color: #4A5568;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 3px solid #CBD5E0;
+        }
+
+        .scene-question {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #FF6B6B;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* ICF全体像図 */
+        .icf-diagram {
+            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .icf-center {
+            background: white;
+            border: 3px solid #4A90A4;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 40px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(74, 144, 164, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .icf-center:hover {
+            transform: scale(1.05);
+        }
+
+        .icf-center i {
+            font-size: 2.5em;
+            color: #4A90A4;
+            margin-bottom: 10px;
+        }
+
+        .icf-center-text {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #2C5F6F;
+            text-align: center;
+        }
+
+        .icf-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .icf-component {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .icf-component:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .icf-component.active {
+            border-color: currentColor;
+            transform: scale(1.05);
+        }
+
+        .icf-component.body {
+            border-top: 4px solid #4299E1;
+        }
+
+        .icf-component.activity {
+            border-top: 4px solid #48BB78;
+        }
+
+        .icf-component.participation {
+            border-top: 4px solid #F6AD55;
+        }
+
+        .icf-component.environment {
+            border-top: 4px solid #9F7AEA;
+        }
+
+        .icf-component.personal {
+            border-top: 4px solid #FC8181;
+        }
+
+        .icf-component i {
+            font-size: 2em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .icf-component.body i { color: #4299E1; }
+        .icf-component.activity i { color: #48BB78; }
+        .icf-component.participation i { color: #F6AD55; }
+        .icf-component.environment i { color: #9F7AEA; }
+        .icf-component.personal i { color: #FC8181; }
+
+        .icf-component-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .icf-component-desc {
+            font-size: 0.95em;
+            color: #4A5568;
+            line-height: 1.6;
+        }
+
+        /* 相互作用の矢印 */
+        .interaction-arrows {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 3em;
+            color: #4A90A4;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* アコーディオン */
+        .accordion {
+            margin: 30px 0;
+        }
+
+        .accordion-item {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            border-color: #4A90A4;
+        }
+
+        .accordion-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #F7FAFC;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #EDF2F7;
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, #4A90A4 0%, #2C5F6F 100%);
+            color: white;
+        }
+
+        .accordion-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .accordion-title i {
+            font-size: 1.5em;
+        }
+
+        .accordion-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 25px;
+            background: white;
+        }
+
+        .accordion-content ul {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        .accordion-content li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
+
+        /* 比較スライダー */
+        .comparison-box {
+            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .comparison-title {
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2C5F6F;
+        }
+
+        .comparison-slider {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .comparison-label {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            color: #4A5568;
+        }
+
+        .slider-container {
+            flex: 3;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #48BB78 0%, #48BB78 50%, #F6AD55 50%, #F6AD55 100%);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #4A90A4;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #4A90A4;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .comparison-display {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .comparison-display h4 {
+            font-size: 1.2em;
+            color: #2C5F6F;
+            margin-bottom: 15px;
+        }
+
+        .comparison-display p {
+            color: #4A5568;
+            line-height: 1.7;
+        }
+
+        /* ケーススタディ */
+        .case-study {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 35px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .case-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+        .case-header i {
+            font-size: 2em;
+            color: #4A90A4;
+        }
+
+        .case-header h4 {
+            font-size: 1.4em;
+            color: #2C5F6F;
+        }
+
+        .case-content {
+            margin-bottom: 25px;
+        }
+
+        .case-subtitle {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #2C5F6F;
+            margin: 20px 0 10px 0;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .case-factor {
+            background: #F7FAFC;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .case-factor.body { border-left-color: #4299E1; }
+        .case-factor.activity { border-left-color: #48BB78; }
+        .case-factor.participation { border-left-color: #F6AD55; }
+        .case-factor.environment { border-left-color: #9F7AEA; }
+        .case-factor.personal { border-left-color: #FC8181; }
+
+        .case-factor h5 {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .case-factor i {
+            font-size: 1.2em;
+        }
+
+        .case-factor.body h5 { color: #4299E1; }
+        .case-factor.activity h5 { color: #48BB78; }
+        .case-factor.participation h5 { color: #F6AD55; }
+        .case-factor.environment h5 { color: #9F7AEA; }
+        .case-factor.personal h5 { color: #FC8181; }
+
+        .case-factor p {
+            font-size: 0.95em;
+            color: #4A5568;
+            margin-bottom: 0;
+        }
+
+        /* 環境変更デモ */
+        .environment-demo {
+            margin: 30px 0;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .demo-button {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 25px;
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .demo-button:hover {
+            border-color: #9F7AEA;
+            background: #F7FAFC;
+            transform: translateY(-2px);
+        }
+
+        .demo-button.active {
+            background: linear-gradient(135deg, #9F7AEA 0%, #7C3AED 100%);
+            color: white;
+            border-color: #9F7AEA;
+        }
+
+        .demo-result {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #E2E8F0;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .demo-result h4 {
+            font-size: 1.3em;
+            color: #2C5F6F;
+            margin-bottom: 15px;
+        }
+
+        .demo-result-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #F7FAFC;
+            border-radius: 8px;
+        }
+
+        .demo-result-item i {
+            font-size: 1.5em;
+            color: #48BB78;
+            margin-top: 3px;
+        }
+
+        .demo-result-item.negative i {
+            color: #FC8181;
+        }
+
+        /* 警告ボックス */
+        .warning-box {
+            background: #FFF5F5;
+            border-left: 4px solid #FC8181;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h4 {
+            color: #C53030;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .warning-box h4 i {
+            font-size: 1.3em;
+        }
+
+        .warning-box ul {
+            margin-left: 20px;
+        }
+
+        .warning-box li {
+            margin-bottom: 10px;
+            color: #742A2A;
+        }
+
+        /* 利点ボックス */
+        .benefit-box {
+            background: #F0FFF4;
+            border-left: 4px solid #48BB78;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .benefit-box h4 {
+            color: #22543D;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefit-box h4 i {
+            font-size: 1.3em;
+        }
+
+        .benefit-box ul {
+            margin-left: 20px;
+        }
+
+        .benefit-box li {
+            margin-bottom: 10px;
+            color: #22543D;
+        }
+
+        /* チェックリスト */
+        .checklist {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #F7FAFC;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            background: #EDF2F7;
+            transform: translateX(5px);
+        }
+
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #CBD5E0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item.checked .checklist-checkbox {
+            background: #48BB78;
+            border-color: #48BB78;
+        }
+
+        .checklist-checkbox i {
+            color: white;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .checklist-item.checked .checklist-checkbox i {
+            display: block;
+        }
+
+        .checklist-text {
+            flex: 1;
+            color: #2D3748;
+        }
+
+        .checklist-item.checked .checklist-text {
+            color: #718096;
+            text-decoration: line-through;
+        }
+
+        /* 情報源 */
+        .resources {
+            background: linear-gradient(135deg, #2C5F6F 0%, #4A90A4 100%);
+            color: white;
+            padding: 50px 40px;
+        }
+
+        .resources h2 {
+            color: white;
+            border-left-color: white;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .resource-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .resource-card h4 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resource-card i {
+            font-size: 1.3em;
+        }
+
+        .resource-card a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .resource-card a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* フッター */
+        footer {
+            background: #1A365D;
+            color: white;
+            text-align: center;
+            padding: 30px 40px;
+        }
+
+        footer p {
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .icf-components {
+                grid-template-columns: 1fr;
+            }
+
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-controls {
+                flex-direction: column;
+            }
+
+            .demo-button {
+                min-width: 100%;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* スムーススクロール */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header>
+            <h1>ICF(国際生活機能分類)を理解する</h1>
+            <p>「障害」はどこにある? 支援の視点を変える、世界標準の枠組み</p>
+        </header>
+
+        <!-- プロローグ -->
+        <section id="prologue">
+            <h2>プロローグ:ある支援会議での場面</h2>
+            <div class="scene-box">
+                <div class="scene-dialogue">
+                    「Aさんは注意の持続が難しく、聴覚的な情報処理にも課題があります。」
+                </div>
+                <div class="scene-dialogue">
+                    「そうですね。事務作業や電話対応は難しいかもしれませんね...」
+                </div>
+                <div class="scene-dialogue">
+                    「軽作業で、静かな環境なら働けるかもしれません。」
+                </div>
+                <p style="margin-top: 25px;">こうした支援会議、よくある光景です。でも、少し立ち止まって考えてみましょう。</p>
+                <div class="scene-question">
+                    この判断、本当に正しいでしょうか?
+                </div>
+            </div>
+            <p>私たちは無意識のうちに「できないこと」を個人の特性だけで説明していませんか? 「注意が続かない」「情報処理が苦手」という<strong>個人の機能</strong>だけを見て、支援の方向性を決めていないでしょうか?</p>
+            <p>でも実は、「働ける・働けない」を決めているのは、本人の機能だけではありません。職場の環境、周囲のサポート、仕事の進め方、本人の経験や価値観...様々な要素が<strong>相互に影響し合って</strong>、結果が決まります。</p>
+            <p>この「相互作用」という視点こそが、<strong>ICF(国際生活機能分類)</strong>の核心です。</p>
+        </section>
+
+        <!-- 理論的背景 -->
+        <section id="theory" style="background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);">
+            <h2>ICFの理論的背景:BPSモデルからICFへ</h2>
+            <p>ICFを深く理解するために、その理論的基盤である<strong>生物心理社会モデル(BPS: Biopsychosocial Model)</strong>との関係を見ていきましょう。</p>
+
+            <h3><i class="fas fa-book-open" style="color: #4A90A4;"></i> BPSモデルとは?</h3>
+            <p>1977年、精神科医のGeorge Engelが提唱した、健康と疾病を包括的に理解するための理論的枠組みです。</p>
+
+            <div style="background: white; padding: 35px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <h4 style="color: #2C5F6F; margin-bottom: 25px; text-align: center; font-size: 1.3em;">BPSモデルの3つの視点</h4>
+                
+                <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0; position: relative;">
+                    <svg viewBox="0 0 400 300" style="max-width: 500px; width: 100%;">
+                        <!-- 3つの重なる円 -->
+                        <circle cx="150" cy="120" r="80" fill="#4299E1" opacity="0.3" stroke="#4299E1" stroke-width="3"/>
+                        <circle cx="250" cy="120" r="80" fill="#48BB78" opacity="0.3" stroke="#48BB78" stroke-width="3"/>
+                        <circle cx="200" cy="200" r="80" fill="#F6AD55" opacity="0.3" stroke="#F6AD55" stroke-width="3"/>
+                        
+                        <!-- 中心部の重なり -->
+                        <circle cx="200" cy="145" r="35" fill="#9F7AEA" opacity="0.5"/>
+                        
+                        <!-- ラベル -->
+                        <text x="110" y="80" fill="#2C5F6F" font-size="16" font-weight="bold">生物的</text>
+                        <text x="105" y="100" fill="#2C5F6F" font-size="12">(Biological)</text>
+                        
+                        <text x="245" y="80" fill="#2C5F6F" font-size="16" font-weight="bold">心理的</text>
+                        <text x="230" y="100" fill="#2C5F6F" font-size="12">(Psychological)</text>
+                        
+                        <text x="165" y="265" fill="#2C5F6F" font-size="16" font-weight="bold">社会的</text>
+                        <text x="170" y="285" fill="#2C5F6F" font-size="12">(Social)</text>
+                        
+                        <text x="175" y="150" fill="#FFFFFF" font-size="14" font-weight="bold">統合</text>
+                    </svg>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div style="background: #EBF8FF; padding: 20px; border-radius: 8px; border-left: 4px solid #4299E1;">
+                        <h5 style="color: #2C5F6F; margin-bottom: 10px; font-size: 1.1em;"><i class="fas fa-dna"></i> 生物的側面</h5>
+                        <p style="font-size: 0.95em; color: #4A5568; margin: 0;">遺伝、神経系、身体機能、疾病など</p>
+                    </div>
+                    <div style="background: #F0FFF4; padding: 20px; border-radius: 8px; border-left: 4px solid #48BB78;">
+                        <h5 style="color: #2C5F6F; margin-bottom: 10px; font-size: 1.1em;"><i class="fas fa-brain"></i> 心理的側面</h5>
+                        <p style="font-size: 0.95em; color: #4A5568; margin: 0;">認知、感情、行動、信念、対処方略など</p>
+                    </div>
+                    <div style="background: #FFFAF0; padding: 20px; border-radius: 8px; border-left: 4px solid #F6AD55;">
+                        <h5 style="color: #2C5F6F; margin-bottom: 10px; font-size: 1.1em;"><i class="fas fa-users"></i> 社会的側面</h5>
+                        <p style="font-size: 0.95em; color: #4A5568; margin: 0;">家族、職場、文化、経済状況、制度など</p>
+                    </div>
+                </div>
+
+                <div style="background: #F0FFF4; padding: 20px; border-radius: 8px; border-left: 4px solid #48BB78; margin-top: 25px;">
+                    <p style="margin: 0; color: #22543D;"><strong>BPSの核心:</strong> 健康や障害を理解するには、生物的要因だけでなく、心理的・社会的要因も含めた<strong>包括的な視点</strong>が必要である</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 50px;"><i class="fas fa-arrow-right" style="color: #4A90A4;"></i> BPSからICFへ:理論の実装</h3>
+            <p>BPSモデルは画期的な理論でしたが、「具体的にどう使うのか?」という課題がありました。ICFは、BPSの理念を<strong>実用的な分類体系として具体化した</strong>ものです。</p>
+
+            <div style="background: white; padding: 35px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <h4 style="color: #2C5F6F; margin-bottom: 20px; text-align: center; font-size: 1.3em;">BPSモデル vs ICF:比較</h4>
+                
+                <table style="width: 100%; border-collapse: collapse; background: white;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #2C5F6F 0%, #4A90A4 100%); color: white;">
+                            <th style="padding: 20px; text-align: left; font-size: 1.1em; border: none; width: 25%;"></th>
+                            <th style="padding: 20px; text-align: left; font-size: 1.1em; border: none;">BPSモデル<br><span style="font-size: 0.85em; font-weight: 400;">(1977)</span></th>
+                            <th style="padding: 20px; text-align: left; font-size: 1.1em; border: none;">ICF<br><span style="font-size: 0.85em; font-weight: 400;">(2001)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">性質</td>
+                            <td style="padding: 20px;"><strong>理論的枠組み</strong><br><span style="color: #718096; font-size: 0.9em;">考え方・哲学</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;"><strong>分類体系</strong><br><span style="color: #22543D; font-size: 0.9em;">具体的な道具</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">構成</td>
+                            <td style="padding: 20px;">3つの側面<br><span style="color: #718096; font-size: 0.9em;">(生物・心理・社会)</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;">6つの構成要素<br><span style="color: #22543D; font-size: 0.9em;">+1424項目の分類</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">抽象度</td>
+                            <td style="padding: 20px;">抽象的・概念的<br><span style="color: #718096; font-size: 0.9em;">「包括的に見よう」</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;">具体的・実践的<br><span style="color: #22543D; font-size: 0.9em;">「これを記録しよう」</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">環境の扱い</td>
+                            <td style="padding: 20px;">「社会的」の中に含まれる<br><span style="color: #718096; font-size: 0.9em;">やや曖昧</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;"><strong>環境因子として明確に独立</strong><br><span style="color: #22543D; font-size: 0.9em;">促進/阻害の両面を評価</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">使用目的</td>
+                            <td style="padding: 20px;">健康を理解する視点<br><span style="color: #718096; font-size: 0.9em;">思考の枠組み</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;">生活機能を記述・評価<br><span style="color: #22543D; font-size: 0.9em;">多職種での共通言語</span></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">網羅性</td>
+                            <td style="padding: 20px;">広い視点を提供<br><span style="color: #718096; font-size: 0.9em;">どこまで含めるか曖昧</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;"><strong>体系的に網羅</strong><br><span style="color: #22543D; font-size: 0.9em;">すべての要素を明示</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin-top: 50px;"><i class="fas fa-link" style="color: #4A90A4;"></i> BPSとICFの対応関係</h3>
+            <p>ICFの6つの構成要素は、BPSの3つの視点をより詳細に分解したものと見ることができます:</p>
+
+            <div style="background: white; padding: 35px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                    <div>
+                        <h4 style="color: #2C5F6F; margin-bottom: 20px; text-align: center; padding-bottom: 15px; border-bottom: 2px solid #E2E8F0;">BPS(理論)</h4>
+                        <div style="background: #EBF8FF; padding: 25px; border-radius: 8px; border-left: 4px solid #4299E1; margin-bottom: 20px;">
+                            <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px; font-size: 1.1em;">生物的</div>
+                            <div style="font-size: 0.9em; color: #4A5568;">身体の構造と機能</div>
+                        </div>
+                        <div style="background: #F0FFF4; padding: 25px; border-radius: 8px; border-left: 4px solid #48BB78; margin-bottom: 20px;">
+                            <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px; font-size: 1.1em;">心理的</div>
+                            <div style="font-size: 0.9em; color: #4A5568;">認知・感情・行動</div>
+                        </div>
+                        <div style="background: #FFFAF0; padding: 25px; border-radius: 8px; border-left: 4px solid #F6AD55;">
+                            <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px; font-size: 1.1em;">社会的</div>
+                            <div style="font-size: 0.9em; color: #4A5568;">環境・文化・制度</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="color: #2C5F6F; margin-bottom: 20px; text-align: center; padding-bottom: 15px; border-bottom: 2px solid #E2E8F0;">ICF(実装)</h4>
+                        <div style="background: #EBF8FF; padding: 20px; border-radius: 8px; border-left: 4px solid #4299E1; margin-bottom: 15px;">
+                            <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 5px;">心身機能・身体構造</div>
+                            <div style="font-size: 0.85em; color: #4A5568;">生物的側面を具体化</div>
+                        </div>
+                        <div style="background: #F0FFF4; padding: 20px; border-radius: 8px; border-left: 4px solid #48BB78; margin-bottom: 15px;">
+                            <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 5px;">活動</div>
+                            <div style="font-size: 0.85em; color: #4A5568;">心理的側面の一部</div>
+                        </div>
+                        <div style="background: #F0FFF4; padding: 20px; border-radius: 8px; border-left: 4px solid #48BB78; margin-bottom: 15px;">
+                            <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 5px;">参加</div>
+                            <div style="font-size: 0.85em; color: #4A5568;">心理+社会的側面</div>
+                        </div>
+                        <div style="background: #FFFAF0; padding: 20px; border-radius: 8px; border-left: 4px solid #F6AD55; margin-bottom: 15px;">
+                            <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 5px;">環境因子</div>
+                            <div style="font-size: 0.85em; color: #4A5568;">社会的側面を明確化</div>
+                        </div>
+                        <div style="background: #FFF5F5; padding: 20px; border-radius: 8px; border-left: 4px solid #FC8181;">
+                            <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 5px;">個人因子</div>
+                            <div style="font-size: 0.85em; color: #4A5568;">心理+社会的背景</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefit-box">
+                <h4><i class="fas fa-lightbulb"></i> 実践への示唆</h4>
+                <ul>
+                    <li><strong>BPSで考え、ICFで記録する:</strong> BPSの包括的視点を持ちながら、ICFで具体的に評価・記録する</li>
+                    <li><strong>理論と実践の往還:</strong> BPSの理念を忘れずに、ICFという道具を使いこなす</li>
+                    <li><strong>公認心理師としての強み:</strong> BPSの心理的側面の専門家として、ICFの活用に貢献できる</li>
+                </ul>
+            </div>
+
+            <div style="background: #FFFAF0; padding: 25px; border-radius: 8px; border-left: 4px solid #F6AD55; margin-top: 30px;">
+                <h4 style="color: #744210; margin-bottom: 15px;"><i class="fas fa-info-circle"></i> エビデンスの観点から</h4>
+                <p style="color: #744210; margin: 0;">BPSモデルは1970年代から心身医学、精神医学、リハビリテーション医学の基盤となってきました。ICFはWHOがBPSの理念を国際的な標準として採用し、実用化したものです。両者を理解することで、<strong>なぜICFが有効なのか</strong>という理論的根拠が明確になります。</p>
+            </div>
+        </section>
+
+        <!-- Part 1: 視点の転換 -->
+        <section id="shift">
+            <h2>「障害」はどこにある?</h2>
+            <p>2001年、WHO(世界保健機関)は画期的な枠組みを採択しました。それが<strong>ICF(International Classification of Functioning, Disability and Health)</strong>です。</p>
+            
+            <h3>何が変わったのか?:旧モデル(ICIDH)からの転換</h3>
+            <p>ICFを理解するには、その前身である<strong>ICIDH(1980年)</strong>との違いを知ることが重要です:</p>
+
+            <div style="overflow-x: auto; margin: 30px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; padding: 10px; background: #F7FAFC; font-size: 0.9em; color: #718096; border-radius: 12px 12px 0 0;">
+                    <i class="fas fa-hand-pointer"></i> 横にスクロールして比較を確認できます
+                </div>
+                <table style="width: 100%; min-width: 600px; border-collapse: collapse; background: white;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #2C5F6F 0%, #4A90A4 100%); color: white;">
+                            <th style="padding: 20px; text-align: left; font-size: 1.1em; border: none;"></th>
+                            <th style="padding: 20px; text-align: left; font-size: 1.1em; border: none;">ICIDH(1980)<br><span style="font-size: 0.85em; font-weight: 400;">旧モデル</span></th>
+                            <th style="padding: 20px; text-align: left; font-size: 1.1em; border: none;">ICF(2001)<br><span style="font-size: 0.85em; font-weight: 400;">現行モデル</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">因果モデル</td>
+                            <td style="padding: 20px;">疾病 → 機能障害 → 能力障害 → 社会的不利<br><span style="color: #718096; font-size: 0.9em;">(一方向の因果関係)</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;">すべての要素が<strong>双方向に相互作用</strong><br><span style="color: #22543D; font-size: 0.9em;">(複雑な関係性)</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">基本的視点</td>
+                            <td style="padding: 20px;">医学モデル中心<br><span style="color: #718096; font-size: 0.9em;">「障害=個人の問題」</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;">医学モデル + 社会モデル<br><span style="color: #22543D; font-size: 0.9em;">「障害=個人と環境の相互作用」</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">焦点</td>
+                            <td style="padding: 20px;">できないこと(ネガティブ)<br><span style="color: #718096; font-size: 0.9em;">機能障害、能力障害</span></td>
+                            <td style="padding: 20px; background: #F0FFF4;">できることも含む(ポジティブ)<br><span style="color: #22543D; font-size: 0.9em;">生活機能全体</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">環境の位置づけ</td>
+                            <td style="padding: 20px;">ほとんど考慮されていない</td>
+                            <td style="padding: 20px; background: #F0FFF4;"><strong>環境因子を明確に位置づけ</strong><br><span style="color: #22543D; font-size: 0.9em;">促進因子・阻害因子として</span></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 20px; font-weight: 700; background: #F7FAFC; color: #2C5F6F;">対象</td>
+                            <td style="padding: 20px;">障害のある人</td>
+                            <td style="padding: 20px; background: #F0FFF4;"><strong>すべての人</strong><br><span style="color: #22543D; font-size: 0.9em;">普遍的な人間経験</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>この転換は単なる用語の変更ではありません。<strong>支援のパラダイムそのものが変わった</strong>のです。</p>
+            
+            <p>ICFが提示した答えは明確です:</p>
+            <div class="benefit-box">
+                <h4><i class="fas fa-lightbulb"></i>ICFの核心的メッセージ</h4>
+                <ul>
+                    <li><strong>「障害」は個人の中だけにあるのではない</strong></li>
+                    <li><strong>「障害」は環境との相互作用の中で生まれる</strong></li>
+                    <li><strong>支援とは、個人を変えることだけでなく、環境を調整することでもある</strong></li>
+                </ul>
+            </div>
+
+            <h3>ICFの全体像</h3>
+            <p>ICFは人間の生活機能を以下の要素で捉えます。それぞれをクリックしてみてください:</p>
+
+            <div class="icf-diagram">
+                <div class="icf-center">
+                    <i class="fas fa-heart-pulse"></i>
+                    <div class="icf-center-text">健康状態<br><span style="font-size: 0.85em; font-weight: 400;">(疾病・変調)</span></div>
+                </div>
+
+                <div class="interaction-arrows">
+                    <i class="fas fa-arrows-up-down"></i>
+                </div>
+
+                <div class="icf-components">
+                    <div class="icf-component body" onclick="highlightComponent(this)">
+                        <i class="fas fa-brain"></i>
+                        <div class="icf-component-title">心身機能・身体構造</div>
+                        <div class="icf-component-desc">身体や精神の働き、身体の部分</div>
+                    </div>
+
+                    <div class="icf-component activity" onclick="highlightComponent(this)">
+                        <i class="fas fa-person-walking"></i>
+                        <div class="icf-component-title">活動</div>
+                        <div class="icf-component-desc">個人が行う具体的な行為や課題</div>
+                    </div>
+
+                    <div class="icf-component participation" onclick="highlightComponent(this)">
+                        <i class="fas fa-users"></i>
+                        <div class="icf-component-title">参加</div>
+                        <div class="icf-component-desc">社会での役割や関わり</div>
+                    </div>
+                </div>
+
+                <div class="interaction-arrows">
+                    <i class="fas fa-arrows-up-down"></i>
+                </div>
+
+                <div style="text-align: center; font-size: 1.2em; font-weight: 700; color: #2C5F6F; margin: 30px 0;">背景因子</div>
+
+                <div class="icf-components">
+                    <div class="icf-component environment" onclick="highlightComponent(this)">
+                        <i class="fas fa-building"></i>
+                        <div class="icf-component-title">環境因子</div>
+                        <div class="icf-component-desc">物的・人的・制度的な環境</div>
+                    </div>
+
+                    <div class="icf-component personal" onclick="highlightComponent(this)">
+                        <i class="fas fa-user"></i>
+                        <div class="icf-component-title">個人因子</div>
+                        <div class="icf-component-desc">年齢・性別・経験・価値観など</div>
+                    </div>
+                </div>
+            </div>
+
+            <p>重要なのは、これらすべての要素が<strong>双方向に影響し合う</strong>ということです。一方通行ではありません。</p>
+
+            <h3 style="margin-top: 50px;">相互作用の仕組み</h3>
+            <p>ICFの最も革新的な点は、この「相互作用モデル」です。図で理解しましょう:</p>
+
+            <div style="background: white; padding: 40px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="display: inline-block; background: linear-gradient(135deg, #4A90A4 0%, #2C5F6F 100%); color: white; padding: 20px 40px; border-radius: 50px; font-size: 1.2em; font-weight: 700; box-shadow: 0 4px 12px rgba(74, 144, 164, 0.3);">
+                        健康状態<br><span style="font-size: 0.8em; font-weight: 400;">(疾病・障害・けが・加齢など)</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <i class="fas fa-arrow-down" style="font-size: 2em; color: #CBD5E0;"></i>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0;">
+                    <div style="background: linear-gradient(135deg, #EBF8FF 0%, #BEE3F8 100%); padding: 25px; border-radius: 12px; border: 3px solid #4299E1; text-align: center; position: relative;">
+                        <i class="fas fa-brain" style="font-size: 2.5em; color: #4299E1; margin-bottom: 10px;"></i>
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 5px;">心身機能・<br>身体構造</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #F0FFF4 0%, #C6F6D5 100%); padding: 25px; border-radius: 12px; border: 3px solid #48BB78; text-align: center; position: relative;">
+                        <i class="fas fa-person-walking" style="font-size: 2.5em; color: #48BB78; margin-bottom: 10px;"></i>
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 5px;">活動</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #FFFAF0 0%, #FBD38D 100%); padding: 25px; border-radius: 12px; border: 3px solid #F6AD55; text-align: center; position: relative;">
+                        <i class="fas fa-users" style="font-size: 2.5em; color: #F6AD55; margin-bottom: 10px;"></i>
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 5px;">参加</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <div style="display: inline-block; background: #FFF5F5; padding: 10px 20px; border-radius: 20px; border: 2px dashed #FC8181;">
+                        <i class="fas fa-arrows-up-down" style="color: #FC8181; margin: 0 10px;"></i>
+                        <span style="font-weight: 700; color: #C53030;">これらは双方向に影響し合う</span>
+                        <i class="fas fa-arrows-up-down" style="color: #FC8181; margin: 0 10px;"></i>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <i class="fas fa-arrow-down" style="font-size: 2em; color: #CBD5E0;"></i>
+                </div>
+
+                <div style="background: #F7FAFC; padding: 25px; border-radius: 12px; border: 2px solid #CBD5E0; margin-top: 20px;">
+                    <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 15px; text-align: center; font-size: 1.2em;">背景因子(すべてに影響を与える)</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: linear-gradient(135deg, #FAF5FF 0%, #E9D8FD 100%); padding: 20px; border-radius: 8px; border: 2px solid #9F7AEA; text-align: center;">
+                            <i class="fas fa-building" style="font-size: 2em; color: #9F7AEA; margin-bottom: 10px;"></i>
+                            <div style="font-weight: 700; color: #2C5F6F;">環境因子</div>
+                            <div style="font-size: 0.9em; color: #553C9A; margin-top: 5px;">物的・人的・制度的環境</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%); padding: 20px; border-radius: 8px; border: 2px solid #FC8181; text-align: center;">
+                            <i class="fas fa-user" style="font-size: 2em; color: #FC8181; margin-bottom: 10px;"></i>
+                            <div style="font-weight: 700; color: #2C5F6F;">個人因子</div>
+                            <div style="font-size: 0.9em; color: #742A2A; margin-top: 5px;">年齢・性別・経験・価値観</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #FFFAF0; padding: 20px; border-radius: 8px; border-left: 4px solid #F6AD55; margin-top: 30px;">
+                    <div style="font-weight: 700; color: #744210; margin-bottom: 10px;"><i class="fas fa-lightbulb"></i> 重要なポイント</div>
+                    <ul style="margin-left: 20px; color: #744210;">
+                        <li style="margin-bottom: 8px;">健康状態が同じでも、環境や個人因子によって「参加」の実現度は大きく異なる</li>
+                        <li style="margin-bottom: 8px;">すべての矢印は<strong>双方向</strong>:参加が心身機能に良い影響を与えることもある</li>
+                        <li>支援は「個人を変える」だけでなく「環境を調整する」ことも含む</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 2: 構造を理解する -->
+        <section id="structure">
+            <h2>ICFの構造を深く理解する</h2>
+
+            <h3><i class="fas fa-heart-pulse" style="color: #4A90A4;"></i> すべての出発点:健康状態</h3>
+            <p>健康状態とは、疾病、障害、けが、妊娠、加齢、ストレスなど、心身の変調全般を指します。これは他のすべての要素に影響を与えますが、健康状態だけが人生を決めるわけではありません。</p>
+
+            <h3>生活機能の3つの次元</h3>
+            <p>ICFは「生活機能」を3つのレベルで捉えます。それぞれを詳しく見ていきましょう:</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-brain" style="color: #4299E1;"></i>
+                            <span>①心身機能・身体構造</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p><strong>心身機能</strong>とは、身体系の生理的・心理的な働きのことです。</p>
+                            <p><strong>身体構造</strong>とは、器官・肢体・組織などの解剖学的な部分です。</p>
+                            
+                            <h4 style="margin-top: 20px; color: #2C5F6F;">就労移行支援でよく見る心身機能の例:</h4>
+                            <ul>
+                                <li><strong>注意機能:</strong> 集中の持続、注意の切り替え、複数の情報への同時注意</li>
+                                <li><strong>記憶機能:</strong> 短期記憶、作業記憶、長期記憶</li>
+                                <li><strong>情緒機能:</strong> 感情の調整、不安・抑うつの管理</li>
+                                <li><strong>知覚機能:</strong> 視覚・聴覚・触覚などの感覚情報の処理</li>
+                                <li><strong>実行機能:</strong> 計画立案、問題解決、柔軟な思考</li>
+                                <li><strong>社会的認知:</strong> 他者の意図や感情の理解、暗黙のルールの把握</li>
+                            </ul>
+
+                            <div class="warning-box" style="margin-top: 20px;">
+                                <h4><i class="fas fa-exclamation-triangle"></i>注意点</h4>
+                                <p>心身機能の「課題」は、それ自体が「働けない理由」ではありません。次の「活動」「参加」のレベルや、環境との相互作用で結果は大きく変わります。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-person-walking" style="color: #48BB78;"></i>
+                            <span>②活動</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p><strong>活動</strong>とは、個人が行う具体的な課題や行為の実行です。</p>
+                            
+                            <h4 style="margin-top: 20px; color: #2C5F6F;">ICFの重要な区別:</h4>
+                            
+                            <div class="comparison-box">
+                                <div class="comparison-title">「できる活動」と「している活動」</div>
+                                <p style="text-align: center; margin-bottom: 20px;">スライダーを動かして違いを理解しましょう</p>
+                                
+                                <div class="comparison-slider">
+                                    <div class="comparison-label">できる活動<br>(能力)</div>
+                                    <div class="slider-container">
+                                        <input type="range" min="0" max="100" value="50" class="slider" id="activitySlider">
+                                    </div>
+                                    <div class="comparison-label">している活動<br>(実行状況)</div>
+                                </div>
+
+                                <div class="comparison-display" id="activityDisplay">
+                                    <h4>中間の状態</h4>
+                                    <p>「できる」と「している」の間にギャップがある状態です。環境や心理的要因が影響している可能性があります。</p>
+                                </div>
+                            </div>
+
+                            <h4 style="margin-top: 30px; color: #2C5F6F;">就労移行支援での活動の例:</h4>
+                            <ul>
+                                <li><strong>コミュニケーション:</strong> 話す、聞く、書く、読む</li>
+                                <li><strong>学習と知識の応用:</strong> 新しい作業の習得、マニュアルの理解</li>
+                                <li><strong>一般的な課題と要求:</strong> 日課の実行、ストレスへの対処</li>
+                                <li><strong>対人関係:</strong> 基本的な対人関係、職場での関係構築</li>
+                                <li><strong>主要な生活領域:</strong> 仕事の準備、求職、就労の維持</li>
+                            </ul>
+
+                            <div class="benefit-box" style="margin-top: 20px;">
+                                <h4><i class="fas fa-star"></i>支援のヒント</h4>
+                                <p>「できる活動」と「している活動」のギャップに注目してください。そのギャップは、環境調整や心理的サポートで埋められる可能性があります。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-users" style="color: #F6AD55;"></i>
+                            <span>③参加</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p><strong>参加</strong>とは、生活・人生場面への関わりです。社会での役割を果たし、意義のある活動に携わることを指します。</p>
+                            
+                            <h4 style="margin-top: 20px; color: #2C5F6F;">就労における参加の例:</h4>
+                            <ul>
+                                <li><strong>経済的自立:</strong> 収入を得て生活を営む</li>
+                                <li><strong>社会的役割:</strong> 「働く人」「チームメンバー」としてのアイデンティティ</li>
+                                <li><strong>社会貢献:</strong> 仕事を通じて社会に価値を提供する実感</li>
+                                <li><strong>人間関係:</strong> 職場での仲間との関係構築</li>
+                                <li><strong>自己実現:</strong> スキルを活かし、成長を感じる</li>
+                            </ul>
+
+                            <div class="benefit-box" style="margin-top: 20px;">
+                                <h4><i class="fas fa-heart"></i>「参加」の本質</h4>
+                                <p>参加は単に「その場にいる」ことではありません。意義を感じ、役割を果たし、社会とつながっている実感を持つことです。これこそが就労支援の最終目標です。</p>
+                            </div>
+
+                            <p style="margin-top: 20px;">重要なのは、<strong>活動の制約が必ずしも参加の制約にはならない</strong>という点です。環境調整や合理的配慮によって、参加は実現できます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 50px;">背景因子:すべてを形作る力</h3>
+            <p>生活機能の3つの次元に影響を与えるのが「背景因子」です。</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-building" style="color: #9F7AEA;"></i>
+                            <span>環境因子</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p><strong>環境因子</strong>とは、人々が生活し、人生を送る上での物的・社会的・態度的な環境です。</p>
+                            
+                            <h4 style="margin-top: 20px; color: #2C5F6F;">環境因子の分類:</h4>
+                            <ul>
+                                <li><strong>物的環境:</strong> 建物のバリアフリー、照明、騒音レベル、作業スペース</li>
+                                <li><strong>人的環境:</strong> 上司・同僚のサポート、理解ある態度、コミュニケーションスタイル</li>
+                                <li><strong>制度的環境:</strong> 労働法規、障害者雇用制度、合理的配慮の提供</li>
+                                <li><strong>社会的態度:</strong> 障害への社会的理解、スティグマの有無</li>
+                                <li><strong>サービス・システム:</strong> 医療・福祉サービス、就労支援機関</li>
+                            </ul>
+
+                            <h4 style="margin-top: 30px; color: #2C5F6F;">環境因子の両面性:</h4>
+                            <p>環境因子は<strong>促進因子</strong>にも<strong>阻害因子</strong>にもなります。</p>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                                <div style="background: #F0FFF4; padding: 20px; border-radius: 8px; border-left: 4px solid #48BB78;">
+                                    <h5 style="color: #22543D; margin-bottom: 10px;"><i class="fas fa-plus-circle"></i> 促進因子の例</h5>
+                                    <ul style="margin-left: 20px; font-size: 0.95em;">
+                                        <li>静かな作業環境</li>
+                                        <li>理解ある上司</li>
+                                        <li>視覚的なマニュアル</li>
+                                        <li>柔軟な勤務時間</li>
+                                    </ul>
+                                </div>
+                                <div style="background: #FFF5F5; padding: 20px; border-radius: 8px; border-left: 4px solid #FC8181;">
+                                    <h5 style="color: #C53030; margin-bottom: 10px;"><i class="fas fa-minus-circle"></i> 阻害因子の例</h5>
+                                    <ul style="margin-left: 20px; font-size: 0.95em;">
+                                        <li>騒がしいオフィス</li>
+                                        <li>配慮のない言動</li>
+                                        <li>曖昧な指示</li>
+                                        <li>硬直的な勤務体系</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="benefit-box" style="margin-top: 20px;">
+                                <h4><i class="fas fa-lightbulb"></i>支援の核心</h4>
+                                <p>就労支援の本質は、<strong>環境因子を促進因子に変えること</strong>です。個人を変えようとするのではなく、環境を調整する視点を持ちましょう。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-user" style="color: #FC8181;"></i>
+                            <span>個人因子</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p><strong>個人因子</strong>とは、その人固有の特徴です。年齢、性別、民族、生活歴、教育歴、価値観、ライフスタイル、性格などが含まれます。</p>
+                            
+                            <h4 style="margin-top: 20px; color: #2C5F6F;">個人因子の例:</h4>
+                            <ul>
+                                <li><strong>年齢・性別:</strong> ライフステージ、ジェンダーによる経験の違い</li>
+                                <li><strong>教育・職歴:</strong> 過去の学習経験、職業経験</li>
+                                <li><strong>価値観・信念:</strong> 仕事に対する考え方、人生の優先順位</li>
+                                <li><strong>性格・気質:</strong> 外向性・内向性、ストレス対処スタイル</li>
+                                <li><strong>生活習慣:</strong> 睡眠、食事、余暇の過ごし方</li>
+                                <li><strong>過去の経験:</strong> 成功体験、失敗体験、トラウマ</li>
+                            </ul>
+
+                            <div class="warning-box" style="margin-top: 20px;">
+                                <h4><i class="fas fa-info-circle"></i>個人因子の未分類について</h4>
+                                <p>ICFでは個人因子は体系的に分類されていません。これは、個人因子が文化や価値観によって大きく異なり、国際的な標準化が困難なためです。支援者は、個人因子を<strong>その人らしさ</strong>として尊重し、丁寧にアセスメントする必要があります。</p>
+                            </div>
+
+                            <p style="margin-top: 20px;">個人因子は、同じ健康状態や環境でも、人によって異なる結果をもたらす理由です。一人ひとりの個人因子を理解することが、真の個別支援につながります。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 3: 相互作用の実際 -->
+        <section id="interaction">
+            <h2>相互作用の実際:ケースで理解する</h2>
+            <p>ここまでICFの構成要素を見てきました。しかし最も重要なのは、<strong>これらすべてが相互に影響し合う</strong>という点です。具体的なケースで見てみましょう。</p>
+
+            <div class="case-study">
+                <div class="case-header">
+                    <i class="fas fa-user-circle"></i>
+                    <h4>ケース:Bさん(30代、自閉スペクトラム症)</h4>
+                </div>
+
+                <div class="case-content">
+                    <p><strong>背景:</strong> Bさんは正確な作業が得意で、ルーティンワークを好みます。一方、予定外の変更や曖昧な指示に強い不安を感じます。これまで複数の職場で働きましたが、いずれも数ヶ月で退職しています。</p>
+
+                    <div class="case-subtitle">ICFで整理してみましょう:</div>
+
+                    <div class="case-grid">
+                        <div class="case-factor body">
+                            <h5><i class="fas fa-brain"></i>心身機能</h5>
+                            <p>・実行機能:柔軟な思考の苦手さ<br>・社会的認知:暗黙のルール理解の困難<br>・情緒機能:予測不能な状況での強い不安</p>
+                        </div>
+
+                        <div class="case-factor activity">
+                            <h5><i class="fas fa-person-walking"></i>活動</h5>
+                            <p>・定型作業:非常に高い精度で実行可能<br>・臨機応変な対応:困難<br>・新しい作業の習得:時間をかければ可能</p>
+                        </div>
+
+                        <div class="case-factor participation">
+                            <h5><i class="fas fa-users"></i>参加(目標)</h5>
+                            <p>・安定した就労の継続<br>・職場での役割を果たす<br>・経済的自立を実現する</p>
+                        </div>
+
+                        <div class="case-factor environment">
+                            <h5><i class="fas fa-building"></i>環境因子</h5>
+                            <p>【過去の職場-阻害因子】<br>・頻繁な業務内容の変更<br>・口頭のみの曖昧な指示<br>・理解のない同僚の言動</p>
+                        </div>
+
+                        <div class="case-factor personal">
+                            <h5><i class="fas fa-user"></i>個人因子</h5>
+                            <p>・真面目で責任感が強い<br>・完璧主義的傾向<br>・「迷惑をかけたくない」という強い思い</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>環境を変えると何が起こるか?</h3>
+            <p>Bさんの事例で、環境因子を変更するとどうなるか見てみましょう。以下のボタンをクリックして、異なる環境での結果を確認してください:</p>
+
+            <div class="environment-demo">
+                <div class="demo-controls">
+                    <button class="demo-button" onclick="showEnvironment('default')">
+                        <i class="fas fa-building"></i>
+                        配慮のない職場
+                    </button>
+                    <button class="demo-button" onclick="showEnvironment('supportive')">
+                        <i class="fas fa-hands-helping"></i>
+                        配慮のある職場
+                    </button>
+                </div>
+
+                <div class="demo-result" id="environmentResult">
+                    <p style="text-align: center; color: #718096;">上のボタンをクリックして、環境の違いを確認してください。</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 30px;">この例が示すのは、<strong>「障害」は環境との相互作用の中で生まれる</strong>ということです。</p>
+
+            <div class="benefit-box">
+                <h4><i class="fas fa-key"></i>相互作用モデルの本質</h4>
+                <ul>
+                    <li>同じ心身機能でも、環境が変われば「参加」の実現度は大きく変わる</li>
+                    <li>個人を「変える」だけでなく、環境を「調整する」視点が不可欠</li>
+                    <li>個人因子(本人の価値観や経験)も相互作用に影響する</li>
+                    <li>すべての要素が絡み合って、最終的な「生活機能」が決まる</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Part 4: 実践と限界 -->
+        <section id="practice">
+            <h2>ICFを実践で使いこなす</h2>
+            <p>ICFを支援現場で活用するための実践的なポイントをまとめます。</p>
+
+            <h3>支援計画へのICFの活用</h3>
+            <p>ICFの視点を使って、より効果的な個別支援計画を立てることができます:</p>
+
+            <div style="background: #F7FAFC; padding: 30px; border-radius: 12px; margin: 30px 0; border: 2px solid #CBD5E0;">
+                <h4 style="color: #2C5F6F; margin-bottom: 20px; text-align: center;"><i class="fas fa-clipboard-list"></i> ICFアセスメントシート(簡易版)</h4>
+                <p style="text-align: center; color: #4A5568; margin-bottom: 25px;">このシートを使って、利用者の状況を包括的に整理してみましょう</p>
+
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #4A90A4;">
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px;">
+                            <i class="fas fa-heart-pulse"></i> 健康状態
+                        </div>
+                        <div style="font-size: 0.9em; color: #718096; margin-bottom: 10px;">診断名、現在の状態、服薬状況など</div>
+                        <div style="background: #F7FAFC; padding: 15px; border-radius: 4px; min-height: 60px; border: 1px dashed #CBD5E0;">
+                            <span style="color: #A0AEC0; font-style: italic;">例:自閉スペクトラム症、抑うつ状態、服薬あり</span>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #4299E1;">
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px;">
+                            <i class="fas fa-brain"></i> 心身機能・身体構造
+                        </div>
+                        <div style="font-size: 0.9em; color: #718096; margin-bottom: 10px;">注意、記憶、情緒、社会的認知など</div>
+                        <div style="background: #F7FAFC; padding: 15px; border-radius: 4px; min-height: 60px; border: 1px dashed #CBD5E0;">
+                            <span style="color: #A0AEC0; font-style: italic;">例:注意の持続30分程度、聴覚情報処理に時間がかかる、不安が強い</span>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #48BB78;">
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px;">
+                            <i class="fas fa-person-walking"></i> 活動
+                        </div>
+                        <div style="font-size: 0.9em; color: #718096; margin-bottom: 10px;">できる活動 / している活動</div>
+                        <div style="background: #F7FAFC; padding: 15px; border-radius: 4px; min-height: 60px; border: 1px dashed #CBD5E0;">
+                            <span style="color: #A0AEC0; font-style: italic;">例:静かな環境なら2時間の作業可能 / 実際は1時間で疲労</span>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #F6AD55;">
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px;">
+                            <i class="fas fa-users"></i> 参加(目標)
+                        </div>
+                        <div style="font-size: 0.9em; color: #718096; margin-bottom: 10px;">本人が望む社会参加のあり方</div>
+                        <div style="background: #F7FAFC; padding: 15px; border-radius: 4px; min-height: 60px; border: 1px dashed #CBD5E0;">
+                            <span style="color: #A0AEC0; font-style: italic;">例:週5日4時間の就労、データ入力の仕事で社会貢献したい</span>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #9F7AEA;">
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px;">
+                            <i class="fas fa-building"></i> 環境因子
+                        </div>
+                        <div style="font-size: 0.9em; color: #718096; margin-bottom: 10px;">促進因子(+) / 阻害因子(-)</div>
+                        <div style="background: #F7FAFC; padding: 15px; border-radius: 4px; min-height: 60px; border: 1px dashed #CBD5E0;">
+                            <span style="color: #A0AEC0; font-style: italic;">例:(+)家族の理解あり、静かな作業スペース / (-)通勤ラッシュが困難</span>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #FC8181;">
+                        <div style="font-weight: 700; color: #2C5F6F; margin-bottom: 10px;">
+                            <i class="fas fa-user"></i> 個人因子
+                        </div>
+                        <div style="font-size: 0.9em; color: #718096; margin-bottom: 10px;">年齢、経験、価値観、強みなど</div>
+                        <div style="background: #F7FAFC; padding: 15px; border-radius: 4px; min-height: 60px; border: 1px dashed #CBD5E0;">
+                            <span style="color: #A0AEC0; font-style: italic;">例:30代、真面目で責任感が強い、正確な作業が得意、過去の失敗体験から自信低下</span>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #4A90A4 0%, #2C5F6F 100%); padding: 20px; border-radius: 8px; color: white;">
+                        <div style="font-weight: 700; margin-bottom: 10px; font-size: 1.1em;">
+                            <i class="fas fa-bullseye"></i> 支援の方向性
+                        </div>
+                        <div style="font-size: 0.9em; opacity: 0.9; margin-bottom: 10px;">ICFの視点から導かれる具体的な支援策</div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 4px; min-height: 60px; border: 1px dashed rgba(255,255,255,0.3);">
+                            <span style="opacity: 0.8; font-style: italic;">例:環境調整(静かな職場、フレックス勤務)、視覚的マニュアル提供、段階的な勤務時間延長、成功体験の積み重ね</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; padding: 20px; background: #FFFAF0; border-radius: 8px; border: 2px solid #F6AD55;">
+                    <div style="font-weight: 700; color: #744210; margin-bottom: 10px;">
+                        <i class="fas fa-info-circle"></i> 使い方のポイント
+                    </div>
+                    <ul style="margin-left: 20px; color: #744210; font-size: 0.95em;">
+                        <li style="margin-bottom: 8px;">各セクションは<strong>本人との対話</strong>を通じて埋めていきましょう</li>
+                        <li style="margin-bottom: 8px;">「できないこと」だけでなく「<strong>できること・強み</strong>」も必ず記入</li>
+                        <li style="margin-bottom: 8px;">環境因子は<strong>変えられるもの</strong>に着目する</li>
+                        <li>定期的に見直し、<strong>変化を記録</strong>していく</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 50px;">支援のチェックリスト</h3>
+            <p>日々の支援でICFの視点を活かすためのチェックリストです。自分の支援を振り返ってみましょう:</p>
+
+            <div class="checklist">
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checklist-checkbox">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="checklist-text">
+                        <strong>1. 心身機能だけでなく、すべての要素をアセスメントする</strong><br>
+                        <span style="font-size: 0.9em; color: #718096;">心身機能の評価だけでなく、活動、参加、環境因子、個人因子を包括的に把握する</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checklist-checkbox">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="checklist-text">
+                        <strong>2. 「できる活動」と「している活動」のギャップを確認する</strong><br>
+                        <span style="font-size: 0.9em; color: #718096;">そのギャップは何が原因か?(環境?心理的要因?経験不足?)</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checklist-checkbox">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="checklist-text">
+                        <strong>3. 環境因子の阻害因子を特定し、促進因子に変える方法を考える</strong><br>
+                        <span style="font-size: 0.9em; color: #718096;">合理的配慮、環境調整、支援ツールの活用など</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checklist-checkbox">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="checklist-text">
+                        <strong>4. 個人因子を尊重し、本人の価値観に沿った目標を設定する</strong><br>
+                        <span style="font-size: 0.9em; color: #718096;">「働くこと」の意味は人それぞれ。本人にとっての「参加」とは何かを確認する</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checklist-checkbox">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="checklist-text">
+                        <strong>5. 「参加」を最終目標に据える</strong><br>
+                        <span style="font-size: 0.9em; color: #718096;">活動の遂行だけでなく、社会での役割、つながり、意義を実現する</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checklist-checkbox">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="checklist-text">
+                        <strong>6. 多職種でICFを共通言語として使う</strong><br>
+                        <span style="font-size: 0.9em; color: #718096;">医療、福祉、教育、企業など異なる専門家が同じ枠組みで議論できる</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 50px;">よくある誤解と注意点</h3>
+
+            <div class="warning-box">
+                <h4><i class="fas fa-exclamation-triangle"></i>ICF使用上の注意</h4>
+                <ul>
+                    <li><strong>ICFは診断ツールではない:</strong> 疾病の診断や原因究明のためのものではなく、生活機能の状態を記述する枠組みです</li>
+                    <li><strong>すべてを網羅する必要はない:</strong> ICFには1424項目ありますが、すべてを使う必要はありません。支援に必要な要素に焦点を絞りましょう</li>
+                    <li><strong>「正常」と「障害」の境界は曖昧:</strong> ICFは程度の問題を扱います。明確な線引きがあるわけではありません</li>
+                    <li><strong>個人因子は未分類:</strong> 個人因子に関しては国際的な合意がないため、各現場で適切に扱う必要があります</li>
+                    <li><strong>文化的配慮が必要:</strong> 「参加」の意味は文化によって異なります。日本の文化的文脈で解釈しましょう</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 40px;">ICFの限界を知る(批判的視点)</h3>
+            <p>ICFは強力な枠組みですが、万能ではありません。限界を理解した上で活用することが重要です:</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>限界1:複雑すぎる構造</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>ICFは1424項目から成る非常に詳細な分類体系です。これは研究や統計には有用ですが、日常的な支援現場では使いにくいという問題があります。</p>
+                            <p><strong>対応策:</strong> 多くの現場では、ICFの簡易版やチェックリスト版を使用しています。「ICFコアセット」という特定の状態に特化した項目集も開発されています。完璧を目指さず、必要な部分だけを活用しましょう。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>限界2:個人因子の未分類</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>個人因子は文化や価値観によって大きく異なるため、国際的な分類が困難です。そのため、個人因子の評価は支援者の主観に依存しがちです。</p>
+                            <p><strong>対応策:</strong> 個人因子の評価は、本人との対話を通じて丁寧に行いましょう。決めつけや固定観念を避け、その人らしさを尊重する姿勢が重要です。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>限界3:相互作用の複雑さ</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>ICFは相互作用を重視しますが、その相互作用の具体的なメカニズムや因果関係を明示していません。どの要素がどのように影響し合うのかは、支援者が分析する必要があります。</p>
+                            <p><strong>対応策:</strong> ICFを「地図」として使い、個々のケースで仮説を立てて検証していくアプローチが有効です。エビデンスベースドの実践と組み合わせましょう。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>限界4:時間軸の不足</span>
+                        </div>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>ICFは基本的に「ある時点」での状態を記述する枠組みです。時間経過による変化や発達的視点が弱いという指摘があります。</p>
+                            <p><strong>対応策:</strong> 定期的なアセスメントを行い、変化を追跡しましょう。ライフステージやキャリア発達の視点も併せて考慮することが重要です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefit-box" style="margin-top: 30px;">
+                <h4><i class="fas fa-lightbulb"></i>それでもICFを使う理由</h4>
+                <p>限界はありますが、ICFは<strong>支援の視点を根本的に変える</strong>力を持っています:</p>
+                <ul>
+                    <li>「個人の問題」から「環境との相互作用」へと視点を転換できる</li>
+                    <li>多職種・多機関での共通言語として機能する</li>
+                    <li>強み(できること)にも注目できる包括的な枠組み</li>
+                    <li>医学モデルと社会モデルを統合した、バランスの取れた視点</li>
+                </ul>
+                <p style="margin-top: 15px;">完璧なツールではありませんが、<strong>「障害は社会の側にもある」</strong>という視点を実践に落とし込む上で、ICFは非常に有用な枠組みなのです。</p>
+            </div>
+        </section>
+
+        <!-- エピローグ -->
+        <section id="epilogue">
+            <h2>エピローグ:最初の場面に戻って</h2>
+            <p>冒頭の支援会議の場面を思い出してください:</p>
+
+            <div class="scene-box">
+                <div class="scene-dialogue">
+                    「Aさんは注意の持続が難しく、聴覚的な情報処理にも課題があります。」
+                </div>
+                <div class="scene-dialogue">
+                    「そうですね。事務作業や電話対応は難しいかもしれませんね...」
+                </div>
+            </div>
+
+            <p>ICFの視点で、この会議をもう一度考えてみましょう:</p>
+
+            <div class="case-study">
+                <div class="case-header">
+                    <i class="fas fa-redo"></i>
+                    <h4>ICFの視点で再検討する</h4>
+                </div>
+
+                <div class="case-content">
+                    <p><strong>従来の視点:</strong></p>
+                    <p style="padding-left: 20px; border-left: 3px solid #CBD5E0; margin-bottom: 25px;">
+                        注意機能の課題 → 事務作業は無理 → 選択肢を狭める
+                    </p>
+
+                    <p><strong>ICFの視点:</strong></p>
+                    <div class="case-grid" style="margin-top: 20px;">
+                        <div class="case-factor body">
+                            <h5><i class="fas fa-brain"></i>心身機能</h5>
+                            <p>注意の持続、聴覚情報処理に課題がある(事実の確認)</p>
+                        </div>
+
+                        <div class="case-factor activity">
+                            <h5><i class="fas fa-person-walking"></i>活動</h5>
+                            <p>どんな環境なら、どの程度の作業ができる? 「できる活動」と「している活動」のギャップは?</p>
+                        </div>
+
+                        <div class="case-factor environment">
+                            <h5><i class="fas fa-building"></i>環境因子</h5>
+                            <p>静かな環境? 視覚的な指示書? 小分けにしたタスク? どんな配慮があれば実現できる?</p>
+                        </div>
+
+                        <div class="case-factor personal">
+                            <h5><i class="fas fa-user"></i>個人因子</h5>
+                            <p>Aさん自身は何を望んでいる? どんな経験や強みがある? 価値観は?</p>
+                        </div>
+
+                        <div class="case-factor participation">
+                            <h5><i class="fas fa-users"></i>参加(目標)</h5>
+                            <p>Aさんにとっての「働く」意味は? どんな役割を果たしたい? 社会とどうつながりたい?</p>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 25px;"><strong>新しい問い:</strong></p>
+                    <p style="padding-left: 20px; border-left: 3px solid #48BB78; color: #22543D; font-weight: 600;">
+                        「どんな環境調整や支援があれば、Aさんが望む『参加』を実現できるだろうか?」
+                    </p>
+                </div>
+            </div>
+
+            <p style="margin-top: 30px;">これが、ICFがもたらす視点の転換です。</p>
+
+            <div class="benefit-box">
+                <h4><i class="fas fa-heart"></i>ICFから学ぶこと</h4>
+                <ul>
+                    <li><strong>「できない」で終わらせない:</strong> 環境を変えれば何ができるかを探る</li>
+                    <li><strong>個人を変えようとしない:</strong> 個人と環境の両方にアプローチする</li>
+                    <li><strong>医学的診断=限界ではない:</strong> 診断名は一つの情報。可能性を狭めない</li>
+                    <li><strong>本人を中心に考える:</strong> 支援者の価値観ではなく、本人の望む「参加」を実現する</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.2em; font-weight: 600; color: #2C5F6F; text-align: center; margin-top: 40px; padding: 25px; background: #F7FAFC; border-radius: 8px;">
+                「障害は個人の中だけにあるのではない。<br>
+                障害は、環境との相互作用の中で生まれる。」
+            </p>
+
+            <p style="text-align: center; margin-top: 30px; color: #4A5568;">
+                この視点こそが、私たちの支援を根本から変える力を持っています。
+            </p>
+        </section>
+
+        <!-- 情報源 -->
+        <div class="resources">
+            <h2>さらに学ぶための情報源</h2>
+            <p style="color: white; margin-bottom: 30px;">ICFについてさらに深く学びたい方のために、信頼できる情報源をまとめました。</p>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h4><i class="fas fa-book"></i>WHO公式サイト</h4>
+                    <p>ICFの原典と最新情報</p>
+                    <a href="https://www.who.int/standards/classifications/international-classification-of-functioning-disability-and-health" target="_blank">
+                        WHO ICF<i class="fas fa-external-link-alt" style="margin-left: 5px;"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h4><i class="fas fa-globe"></i>厚生労働省</h4>
+                    <p>日本語版ICFと活用の手引き</p>
+                    <a href="https://www.mhlw.go.jp/houdou/2002/08/h0805-1.html" target="_blank">
+                        厚労省 ICF資料<i class="fas fa-external-link-alt" style="margin-left: 5px;"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h4><i class="fas fa-university"></i>国立障害者リハビリテーションセンター</h4>
+                    <p>ICFの研究と実践事例</p>
+                    <a href="https://www.rehab.go.jp/" target="_blank">
+                        リハセンター<i class="fas fa-external-link-alt" style="margin-left: 5px;"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h4><i class="fas fa-file-pdf"></i>ICFコアセット</h4>
+                    <p>特定の状態に特化した簡易版</p>
+                    <a href="https://www.icf-core-sets.org/" target="_blank">
+                        ICF Core Sets<i class="fas fa-external-link-alt" style="margin-left: 5px;"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h4><i class="fas fa-briefcase"></i>障害者職業総合センター</h4>
+                    <p>就労支援におけるICF活用</p>
+                    <a href="https://www.nivr.jeed.go.jp/" target="_blank">
+                        職業センター<i class="fas fa-external-link-alt" style="margin-left: 5px;"></i>
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <h4><i class="fas fa-book-open"></i>ICF活用の手引き</h4>
+                    <p>実践的な活用マニュアル</p>
+                    <a href="https://www.dinf.ne.jp/doc/japanese/prdl/jsrd/norma/n373/n373_index.html" target="_blank">
+                        活用手引き<i class="fas fa-external-link-alt" style="margin-left: 5px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 8px; margin-top: 40px; border: 1px solid rgba(255,255,255,0.2);">
+                <h4 style="color: white; margin-bottom: 15px;"><i class="fas fa-info-circle"></i> 推奨される学習の進め方</h4>
+                <ol style="margin-left: 20px; color: white;">
+                    <li style="margin-bottom: 10px;">まず厚生労働省の「ICF活用の試み」を読む</li>
+                    <li style="margin-bottom: 10px;">自分の支援している方を1名選び、ICFで整理してみる</li>
+                    <li style="margin-bottom: 10px;">チームでICFの視点を共有し、支援計画を見直す</li>
+                    <li style="margin-bottom: 10px;">定期的にICFの視点でケース検討会を開く</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <footer>
+            <p>&copy; 岡村雄一郎 | ICF(国際生活機能分類)を理解する</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">このインフォグラフィックは、WHO ICF(2001)および厚生労働省の資料を基に作成されました。</p>
+        </footer>
+    </div>
+
+    <script>
+        // アコーディオン機能
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const isActive = header.classList.contains('active');
+
+            // すべてのアコーディオンを閉じる
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.parentElement.querySelector('.accordion-content').style.maxHeight = null;
+            });
+
+            // クリックされたアコーディオンを開く(閉じていた場合)
+            if (!isActive) {
+                header.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        // ICFコンポーネントのハイライト
+        function highlightComponent(element) {
+            // すべてのコンポーネントのactiveを解除
+            document.querySelectorAll('.icf-component').forEach(comp => {
+                comp.classList.remove('active');
+            });
+
+            // クリックされたコンポーネントをアクティブに
+            element.classList.add('active');
+
+            // 少し遅れてactiveを解除(アニメーション効果)
+            setTimeout(() => {
+                element.classList.remove('active');
+            }, 2000);
+        }
+
+        // 活動スライダー
+        const activitySlider = document.getElementById('activitySlider');
+        const activityDisplay = document.getElementById('activityDisplay');
+
+        if (activitySlider) {
+            activitySlider.addEventListener('input', function() {
+                const value = this.value;
+                let title, description;
+
+                if (value < 30) {
+                    title = "「できる活動」に焦点";
+                    description = "標準的な環境(テスト環境)では能力があるが、実際の生活場面では実行していない状態です。環境要因、心理的要因、経験不足などが影響している可能性があります。<br><br><strong>支援の方向性:</strong> 実際の場面で活動を実行できるよう、環境調整、心理的サポート、段階的な経験の積み重ねを検討しましょう。";
+                } else if (value > 70) {
+                    title = "「している活動」に焦点";
+                    description = "実際の生活場面で活動を実行している状態です。環境のサポートが充実している、あるいは本人が工夫して実行できている状態といえます。<br><br><strong>支援の方向性:</strong> 現在の良い状態を維持・発展させる視点が重要です。成功体験を積み重ね、自信につなげましょう。";
+                } else {
+                    title = "バランスの取れた状態";
+                    description = "「できる」と「している」の間にある程度のバランスがある状態です。ただし、若干のギャップがある場合、そのギャップは何が原因かを探ることが重要です。<br><br><strong>支援の方向性:</strong> 環境要因や心理的要因を丁寧に分析し、さらに「している活動」を増やせる余地がないか検討しましょう。";
+                }
+
+                activityDisplay.innerHTML = `<h4>${title}</h4><p>${description}</p>`;
+            });
+        }
+
+        // 環境デモ
+        function showEnvironment(type) {
+            const resultDiv = document.getElementById('environmentResult');
+            
+            // すべてのボタンのactiveを解除
+            document.querySelectorAll('.demo-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // クリックされたボタンをactiveに
+            event.target.closest('.demo-button').classList.add('active');
+
+            if (type === 'default') {
+                resultDiv.innerHTML = `
+                    <h4>配慮のない職場での結果</h4>
+                    <div class="demo-result-item negative">
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <strong>活動の困難:</strong> 頻繁に変わる業務内容に対応できず、強い不安とストレスを感じる
+                        </div>
+                    </div>
+                    <div class="demo-result-item negative">
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <strong>参加の制約:</strong> 職場での役割を果たせず、「自分は役に立たない」と感じる
+                        </div>
+                    </div>
+                    <div class="demo-result-item negative">
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <strong>結果:</strong> 数ヶ月で離職。「自分には働くことは無理」と自信を失う
+                        </div>
+                    </div>
+                `;
+            } else if (type === 'supportive') {
+                resultDiv.innerHTML = `
+                    <h4>配慮のある職場での結果</h4>
+                    <div class="demo-result-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>活動の実現:</strong> 定型化された業務、視覚的な手順書、変更時の事前通知により、高い精度で作業を遂行
+                        </div>
+                    </div>
+                    <div class="demo-result-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>参加の実現:</strong> 「正確な仕事をする人」として信頼され、チームに貢献している実感を持つ
+                        </div>
+                    </div>
+                    <div class="demo-result-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>結果:</strong> 安定して就労を継続。経済的自立と社会的役割を実現
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px; padding: 15px; background: #F0FFF4; border-radius: 8px; border-left: 4px solid #48BB78;">
+                        <strong>ポイント:</strong> Bさんの心身機能は変わっていません。変わったのは環境です。この例が示すのは、<strong>「障害」は環境との相互作用の中で生まれる</strong>という ICFの核心的なメッセージです。
+                    </p>
+                `;
+            }
+        }
+
+        // チェックリスト
+        function toggleCheck(item) {
+            item.classList.toggle('checked');
+        }
+
+        // スムーススクロール(アンカーリンク用)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ページ読み込み時のアニメーション
+        window.addEventListener('load', function() {
+            // フェードイン効果
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
